@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDroppable, useDraggable } from "@dnd-kit/core";
 
-export default function Card({id, title, tasks, setColumns}) {
+export default function Card({id, title, tasks, setColumns, invisibleTask}) {
 
     const [input, setInput] = useState("");
     const {setNodeRef} = useDroppable({id});
@@ -55,7 +55,8 @@ export default function Card({id, title, tasks, setColumns}) {
                         index={index}
                         task={task}
                         column={id}
-                        onDelete={()=>deleteTask(index)}/>
+                        onDelete={()=>deleteTask(index)}
+                        invisibleTask={invisibleTask}/>
                         
                 ))}
             </ul>
@@ -63,18 +64,21 @@ export default function Card({id, title, tasks, setColumns}) {
     );
 
 
-    function DraggableTask({id, index, task, column, onDelete}) {
+    function DraggableTask({id, index, task, column, onDelete, invisibleTask}) {
+
+        const isDragging = invisibleTask === id;
 
         const {attributes, listeners, setNodeRef} = useDraggable({
             id,
             data: {
                 index,
                 column,
+                task,
             },
         });
 
         return (
-            <li ref={setNodeRef} className="bg-gray-100 p-2 rounded-md shadow-sm">
+            <li ref={setNodeRef} className={`bg-gray-100 p-2 rounded-md shadow-sm ${isDragging ? "opacity-0" : ""}`}>
                 <span>{task}</span>
                 <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); onDelete()}} className="bg-red-500 text-white px-2 py-1 rounded-md text-sm float-right">X</button>
                 <button {...listeners} {...attributes} className="bg-yellow-500 text-white px-2 py-1 rounded-md text-sm float-right cursor-move">☰</button>
