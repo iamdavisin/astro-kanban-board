@@ -1,5 +1,12 @@
 # 🗂️ Kanban Board  - Astro+React
 
+## ▶️ Live Demo
+[![▶️ Preview | Kanban Board](https://img.shields.io/badge/%20My%20Website-Kanban%20Board-blue?style=for-the-badge)](https://kanban.iamdavisin.com)
+[![Vercel | Preview](https://img.shields.io/badge/%20Vercel%20Preview-%20kanban%20board-black?style=for-the-badge&logo=vercel)](https://astro-kanban-board-git-main-iamdavisins-projects.vercel.app)
+
+
+---
+
 ## ✨ Features / Características
 
 - Agregar tareas / Add tasks
@@ -21,7 +28,8 @@
 - Ordenar tareas de la columna / Order column tasks
 - Persistencia en localStorage / Persistence in localStorage
 
-## 🚀 Cómo ejecutar / How to Run
+
+## 🚀 Cómo ejecutar en local / How to Run in local
 ```bash
 git clone https://github.com/iamdavisin/astro-kanban-board
 cd astro-kanban-board

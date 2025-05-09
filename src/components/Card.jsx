@@ -19,8 +19,11 @@ export default function Card({id, title, tasks, setColumns, invisibleTask}) {
     
     }
 
-    const deleteTask = (index) => {
-        console.log("Deleting task: ", index);
+    const deleteTask = (index,task) => {
+
+        //modal confirmation
+        if(!confirm(`Are you sure you want to delete "${task}"?`)) return;
+
         setColumns((prev) => ({
             ...prev,
             [id]: prev[id].filter((_, i) => i !== index),
@@ -29,7 +32,7 @@ export default function Card({id, title, tasks, setColumns, invisibleTask}) {
     }
 
     return (
-        <div ref={setNodeRef} className="bg-white shadow-md rounded-lg p-4 w-720 flex flex-col text-center">
+        <div ref={setNodeRef} className="bg-white shadow-md rounded-lg p-4 w-720 flex flex-col text-center dark:bg-gray-800 dark:text-white">
             <h2 className="font-bold mb-4">{title}</h2>
 
             <div className="flex mb-2">
@@ -42,7 +45,7 @@ export default function Card({id, title, tasks, setColumns, invisibleTask}) {
                     placeholder="Task"
                 />
 
-                <button className="bg-blue-500 text-white px-3 py-1 rounded-xlñ text-sm" onClick={addTask}>+</button>
+                <button className="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm cursor-pointer" onClick={addTask}>+</button>
 
             </div>
             
@@ -55,7 +58,7 @@ export default function Card({id, title, tasks, setColumns, invisibleTask}) {
                         index={index}
                         task={task}
                         column={id}
-                        onDelete={()=>deleteTask(index)}
+                        onDelete={()=>deleteTask(index,task)}
                         invisibleTask={invisibleTask}/>
                         
                 ))}
@@ -78,9 +81,9 @@ export default function Card({id, title, tasks, setColumns, invisibleTask}) {
         });
 
         return (
-            <li ref={setNodeRef} className={`bg-gray-100 p-2 rounded-md shadow-sm ${isDragging ? "opacity-0" : ""}`}>
+            <li ref={setNodeRef} className={`bg-gray-100 p-2 rounded-md shadow-sm ${isDragging ? "opacity-0" : ""} dark:bg-gray-700 dark:text-white`}>
                 <span>{task}</span>
-                <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); onDelete()}} className="bg-red-500 text-white px-2 py-1 rounded-md text-sm float-right">X</button>
+                <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); onDelete()}} className="bg-red-500 text-white px-2 py-1 rounded-md text-sm float-right cursor-pointer">X</button>
                 <button {...listeners} {...attributes} className="bg-yellow-500 text-white px-2 py-1 rounded-md text-sm float-right cursor-move">☰</button>
             </li>
         );

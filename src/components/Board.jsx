@@ -56,7 +56,7 @@ export default function Board() {
 
             <DragOverlay>
                 {activeTask ? (
-                    <li className="bg-gray-100 p-2 rounded-md shadow-sm list-none text-center">
+                    <li className="bg-gray-100 p-2 rounded-md shadow-sm list-none text-center dark:bg-gray-700 dark:text-white">
                         <span>{activeTask}</span>
                         <button className="bg-red-500 text-white px-2 py-1 rounded-md text-sm float-right">X</button>
                         <button className="bg-yellow-500 text-white px-2 py-1 rounded-md text-sm float-right cursor-move">☰</button>
