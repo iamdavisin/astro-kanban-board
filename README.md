@@ -26,7 +26,9 @@
 
 ## 🔄 Por hacer / To do:
 - Ordenar tareas de la columna / Order column tasks
-- Persistencia en localStorage / Persistence in localStorage
+- ~~Persistencia en localStorage / Persistence in localStorage~~
+
+
 
 
 ## 🚀 Cómo ejecutar en local / How to Run in local
