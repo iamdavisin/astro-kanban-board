@@ -21,7 +21,7 @@ export default function Card({id, title, tasks, setColumns, invisibleTask}) {
 
     const deleteTask = (index,task) => {
 
-        //modal confirmation
+        
         if(!confirm(`Are you sure you want to delete "${task}"?`)) return;
 
         setColumns((prev) => ({

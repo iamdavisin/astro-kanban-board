@@ -1,19 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { DndContext, DragOverlay, closestCenter } from "@dnd-kit/core";
 
+
+
+
 export default function Board() {
-  
-    const [columns, setColumns] = useState({
+
+    const initialColumns = {
 
         todo: [],
         inProgress: [],
         done: [],
     
-    });
+    };
 
+    const getStoredColumns = () => {
+
+        if(typeof windows === "undefined") return initialColumns;
+        const stored = localStorage.getItem("kanbanColumns");
+        return stored ? JSON.parse(stored) : initialColumns;
+    };
+
+
+
+    const [columns, setColumns] = useState(getStoredColumns);
     const [activeTask, setActiveTask] = useState(null);
     const [invisibleTask, setInvisibleTask] = useState(null);
+
+    useEffect(() => {
+        if(typeof window !== "undefined"){
+            localStorage.setItem("kanbanColumns", JSON.stringify(columns));
+        }
+        
+    }, [columns]);
 
     const handleDragStart = ({active}) => {
         if(active.data?.current){
