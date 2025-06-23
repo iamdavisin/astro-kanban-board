@@ -17,7 +17,7 @@ export default function Board() {
 
     const getStoredColumns = () => {
 
-        if(typeof windows === "undefined") return initialColumns;
+        if(typeof window === "undefined") return initialColumns;
         const stored = localStorage.getItem("kanbanColumns");
         return stored ? JSON.parse(stored) : initialColumns;
     };
